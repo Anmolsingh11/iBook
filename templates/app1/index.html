@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+
+{% block homeactive %} active {% endblock homeactive %}
+{% block body %}
+<div class="container my-4" >
+	<div class="jumbotron">
+  <h1 class="display-4">Welcome to iBook!</h1>
+  <hr class="my-4">
+  <p>A Platform to post and read popular books.</p>
+</div>
+    </div>
+
+
+<div class="container">
+	<h2>Popular Books</h2>
+	{% for book in books %}
+	<div class="row no-gutters border rounded overflow-hidden flex-md-row my-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+			<h3 class="mb-0">Title : {{ book.title }}</h3>
+          <strong class="d-inline-block mb-2 text-primary">Author : {{ book.author}}</strong>
+          <div class="mb-1 text-muted">Published date : {{ book.published}}</div>
+          <p class="card-text mb-auto">Genre : {{ book.genre }}</p>
+          <a href="{% url 'app1:detail' book.id %}" class="stretched-link">Continue reading</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+			<a href="{% url 'app1:detail' book.id %}">
+           <img width="300px" height="200" src='{{ book.image1.url }}' alt="image description">
+			</a>
+        </div>
+      </div>
+	{% endfor %}
+</div>
+{% endblock%}

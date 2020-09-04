@@ -1,0 +1,71 @@
+{% extends 'base.html'%}
+{% load widget_tweaks %}
+
+{% block postactive %} active {% endblock postactive %}
+{%block body %}
+<section class="ad-post bg-gray py-5">
+    <div class="container">
+        <form method="POST" enctype= "multipart/form-data">
+            {% csrf_token %}
+            <!-- Post Your ad start -->
+            <fieldset class="border border-gary p-4 mb-5">
+                    <div class="row">
+                        {% if book %}
+                        <div class="col-lg-12">
+                            <h3>Update Book</h3>
+                        </div>
+                        {% else %}
+                        <div class="col-lg-12">
+                            <h3>Post Book</h3>
+                        </div>
+                        {% endif %}
+                        <div class="col-lg-6">
+                            <h6 class="font-weight-bold pt-4 pb-1">Title Of Book:</h6>
+                            {% render_field form.title class+="form-control" %}
+                            <div class="price">
+                                <h6 class="font-weight-bold pt-4 pb-1">Book Price :</h6>
+                                <div class="row px-3">
+                                    <div class="col-lg-4 mr-lg-4 rounded bg-white my-2 ">
+                                        {% render_field form.price class+="border w-100 p-2 bg-white text-capitalize" %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+									<h6 class="font-weight-bold pt-4 pb-1">Genre :</h6>
+									{% render_field form.genre class+="" %}
+							</div>
+
+                        </div>
+                        <div class="col-lg-6">
+                            <h6 class="font-weight-bold pt-4 pb-1">Author Of Book:</h6>
+                            {% render_field form.author class+="form-control" %}
+                            <h6 class="font-weight-bold pt-4 pb-1">Published Date:</h6>
+                            {% render_field form.published type+="date" %}
+
+                            <h6 class="font-weight-bold pt-4 pb-1">Description:</h6>
+                            {% render_field form.description class+="border p-3 w-100" %}
+
+                            <div class="choose-file text-center my-4 py-4 rounded">
+                                <label >
+                                    <span class="d-block font-weight-bold text-dark">Drop Images to upload</span>
+                                    <span class="d-block">Maximum upload Image size: 2MB </span>
+                                    <span class="btn bg-primary text-black my-3 select-files">
+                                        {% render_field  form.image1 %} Image *
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+            </fieldset>
+            <!-- Post Your ad end -->
+            <!-- submit button -->
+            {% if book %}
+                <button type="submit" class="btn btn-dark">Update Your Book</button>
+            {% else %}
+                <button type="submit" class="btn btn-dark">Post Your Book</button>
+            {% endif %}
+        </form>
+    </div>
+</section>
+{% endblock %}

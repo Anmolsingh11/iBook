@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block body %}
+<style>
+	.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+
+<div class="container my-4"  >
+	<div class="widget welcome-message">
+                        <h1 style="text-align: center;">{{ book.title }}</h1>
+		</div>
+	<hr class="my-4">
+	<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+        <img width="400px" height="auto" class="center" src="{{ book.image1.url }}"  >
+    </div>
+  </div>
+</div>
+	<div class="card my-5">
+  <div class="card-body">
+    <h3 class="tab-title">Book Details : </h3>
+	  <hr class="my-4">
+	  <div class="container">
+		  <h6 class="font-weight-bold pt-4 pb-1">Author: {{ book.author }}</h6>
+		  <h6 class="font-weight-bold pt-4 pb-1">Published date: {{ book.published }}</h6>
+		  <h6 class="font-weight-bold pt-4 pb-1">Genre: {{ book.genre }}</h6>
+		  <h6 class="font-weight-bold pt-4 pb-1">Price: {{ book.price }}</h6>
+	  </div>
+	  <div class="row">
+  <div class="col-sm-10">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Description</h5>
+		  <hr class="my-4">
+        <p class="card-text">{{ book.description }}</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+
+</div>
+
+{% endblock %}
